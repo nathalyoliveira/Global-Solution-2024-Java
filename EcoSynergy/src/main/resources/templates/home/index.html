@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>[[#{home.index.headline}]]</title>
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+    <div layout:fragment="content" class="container mt-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4">[[#{home.index.headline}]]</h1>
+            <p class="lead">[(#{home.index.text})]</p>
+            <p>
+                <span>[[#{home.index.swagger}]]</span>
+                <a th:href="@{/swagger-ui.html}" target="_blank" class="text-decoration-none">[[#{home.index.swagger.link}]]</a>
+            </p>
+        </div>
+
+        <div class="container mt-4 p-3 bg-light rounded shadow-sm">
+            <p class="text-muted">[[#{home.index.projeto.descricao}]]</p>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4 gap-2" style="max-width: 250px; margin: 0 auto;">
+            <a href="/login" class="btn btn-primary w-50 text-center">[[#{home.index.login}]]</a>
+            <a href="/cadastro" class="btn btn-outline-secondary w-50 text-center">[[#{home.index.cadastro}]]</a>
+        </div>
+    </div>
+
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

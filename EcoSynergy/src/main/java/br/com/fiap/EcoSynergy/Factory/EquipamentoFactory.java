@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.fiap.EcoSynergy.Dto.EquipamentoDTO;
@@ -13,9 +12,6 @@ import br.com.fiap.EcoSynergy.Model.Equipamento;
 
 @Component
 public class EquipamentoFactory {
-
-	@Autowired
-	SensorFactory sensorFactory;
 
 	public List<EquipamentoDTO> toDto(List<Equipamento> equipamentos) {
 		return Optional.ofNullable(equipamentos)

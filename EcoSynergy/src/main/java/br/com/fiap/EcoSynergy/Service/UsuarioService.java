@@ -56,4 +56,11 @@ public class UsuarioService {
             return false;
         }
     }
+    
+    public Usuario cadastrarUsuario(Usuario usuario) {
+        if (usuarioRepository.findByUsername(usuario.getEmail()).isPresent()) {
+            throw new RuntimeException("Usuário já cadastrado");
+        }
+        return usuarioRepository.save(usuario);
+    }
 }

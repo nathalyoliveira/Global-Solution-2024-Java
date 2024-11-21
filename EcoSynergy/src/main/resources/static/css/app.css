@@ -1,0 +1,12 @@
+.acoes {
+    text-align: right; /* Alinha o conteúdo à direita */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+}

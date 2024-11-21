@@ -27,4 +27,7 @@ public class Usuario {
 
     @Column(name="DS_SENHA")
     private String senha;
+    
+    @Column(name = "ROLE", nullable = false)
+    private String role;
 }
