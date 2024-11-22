@@ -1,7 +1,6 @@
 package br.com.fiap.EcoSynergy.Dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,5 +13,5 @@ public class ConsumoDTO {
     private Double kwh;
     private LocalDate data;
     private SensorDTO sensor;
-    private List<AlertaDTO> alertas;
+//    private List<AlertaDTO> alertas;
 }

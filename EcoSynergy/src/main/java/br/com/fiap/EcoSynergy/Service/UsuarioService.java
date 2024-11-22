@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.EcoSynergy.Dto.UsuarioDTO;
@@ -62,5 +64,19 @@ public class UsuarioService {
             throw new RuntimeException("Usuário já cadastrado");
         }
         return usuarioRepository.save(usuario);
+    }
+    
+    public Usuario getUsuarioLogado() {
+        String email = getUsuarioLogadoEmail();
+        return usuarioRepository.findByUsername(email)
+                .orElseThrow(() -> new IllegalStateException("Usuário não encontrado: " + email));
+    }
+
+    private String getUsuarioLogadoEmail() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            return authentication.getName();
+        }
+        throw new IllegalStateException("Usuário não autenticado");
     }
 }

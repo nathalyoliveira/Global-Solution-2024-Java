@@ -16,8 +16,8 @@ public class ConsumoFactory {
 
 	@Autowired
 	private SensorFactory sensorFactory;
-	@Autowired
-	private AlertaFactory alertaFactory;
+//	@Autowired
+//	private AlertaFactory alertaFactory;
 
 	public List<ConsumoDTO> toDTO(List<Consumo> consumos) {
 		return Optional.ofNullable(consumos).map(lista -> lista.stream().map(this::toDto).collect(Collectors.toList()))
@@ -35,7 +35,7 @@ public class ConsumoFactory {
 		dto.setKwh(consumo.getKwh());
 		dto.setData(consumo.getData());
 		dto.setSensor(sensorFactory.toDto(consumo.getSensor()));
-		dto.setAlertas(alertaFactory.toDto(consumo.getAlertas()));
+//		dto.setAlertas(alertaFactory.toDto(consumo.getAlertas()));
 		return dto;
 	}
 
@@ -56,7 +56,7 @@ public class ConsumoFactory {
 		entity.setKwh(consumoDTO.getKwh());
 		entity.setData(consumoDTO.getData());
 		entity.setSensor(sensorFactory.toEntity(consumoDTO.getSensor()));
-		entity.setAlertas(alertaFactory.toEntity(consumoDTO.getAlertas()));
+//		entity.setAlertas(alertaFactory.toEntity(consumoDTO.getAlertas()));
 		return entity;
 	}
 

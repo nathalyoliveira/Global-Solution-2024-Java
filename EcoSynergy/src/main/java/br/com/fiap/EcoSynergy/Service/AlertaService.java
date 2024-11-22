@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.EcoSynergy.Dto.AlertaDTO;
 import br.com.fiap.EcoSynergy.Factory.AlertaFactory;
 import br.com.fiap.EcoSynergy.Model.Alerta;
+import br.com.fiap.EcoSynergy.Packsdb.PckInserts;
 import br.com.fiap.EcoSynergy.Repository.AlertaRepository;
 
 @Service
 public class AlertaService {
     @Autowired
     private AlertaRepository alertaRepository;
+    
+    @Autowired
+    private PckInserts pckInserts;
 
     @Autowired
     private AlertaFactory factory;
@@ -32,6 +36,12 @@ public class AlertaService {
         Alerta novoAlerta = alertaRepository.save(factory.toEntity(Alerta));
         return factory.toDto(novoAlerta);
     }
+    
+    public void criarAlertaByPackage(AlertaDTO alerta) {
+        Long idConsumo = alerta.getConsumo() != null ? alerta.getConsumo().getId() : null;
+        pckInserts.inserirAlerta(alerta.getDescricao(), alerta.getStatus(), idConsumo);
+    }
+
 
     public AlertaDTO updateAlerta(Long id, AlertaDTO alerta){
         Alerta alertaExistente = alertaRepository.findById(id).orElse(null);

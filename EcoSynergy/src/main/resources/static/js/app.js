@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
             var modal = document.getElementById('myModal');
             
             
-            var clienteIdInput = modal.querySelector('#clienteId');
+            var localIdInput = modal.querySelector('#localId');
             var vendedorIdInput = modal.querySelector('#vendedorId');
             
-            if(clienteIdInput != null){
-				clienteIdInput.value = objetoId;
+            if(localIdInput != null){
+				localIdInput.value = objetoId;
 			}
 			
 			if(vendedorIdInput != null){
@@ -31,14 +31,14 @@ document.addEventListener('DOMContentLoaded', function () {
             var objetoId = this.getAttribute('data-id');
             var deleteForm = document.getElementById('deleteForm');
             
-            var clientIdInput = document.getElementById('clientIdToDelete');
+            var localIdInput = document.getElementById('localIdToDelete');
             var vendedorIdInput = document.getElementById('vendedorIdToDelete');
             
             var tipoCultivoIdInput = document.getElementById('cultivoIdToDelete');
             
-            if (clientIdInput != null){
-				clientIdInput.value = objetoId;
-				deleteForm.action = '/clientes/excluir/' + objetoId;
+            if (localIdInput != null){
+				localIdInput.value = objetoId;
+				deleteForm.action = '/local/excluir/' + objetoId;
 			}
 			
 			if(vendedorIdInput != null){

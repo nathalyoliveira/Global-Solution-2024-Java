@@ -12,4 +12,5 @@ public class AlertaDTO {
     private String descricao;
     private LocalDate data;
     private String status;
+    private ConsumoDTO consumo;
 }

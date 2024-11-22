@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.fiap.EcoSynergy.Dto.AlertaDTO;
@@ -12,6 +13,9 @@ import br.com.fiap.EcoSynergy.Model.Alerta;
 
 @Component
 public class AlertaFactory {
+	
+	@Autowired
+	ConsumoFactory consumoFactory;
 
 	public List<AlertaDTO> toDto(List<Alerta> alertas) {
 		return Optional.ofNullable(alertas).map(lista -> lista.stream().map(this::toDto).collect(Collectors.toList()))
@@ -29,6 +33,7 @@ public class AlertaFactory {
 		dto.setStatus(alerta.getStatus());
 		dto.setData(alerta.getData());
 		dto.setDescricao(alerta.getDescricao());
+		dto.setConsumo(consumoFactory.toDto(alerta.getConsumo()));
 		return dto;
 	}
 
@@ -49,6 +54,7 @@ public class AlertaFactory {
 		entity.setStatus(alerta.getStatus());
 		entity.setData(alerta.getData());
 		entity.setDescricao(alerta.getDescricao());
+		entity.setConsumo(consumoFactory.toEntity(alerta.getConsumo()));
 		return entity;
 	}
 }

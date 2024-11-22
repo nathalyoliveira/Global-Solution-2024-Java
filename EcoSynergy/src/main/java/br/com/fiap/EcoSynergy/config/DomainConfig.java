@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EntityScan("br.com.fiap.EcoSynergy.Model")
 @EnableJpaRepositories("br.com.fiap.EcoSynergy.Repository")
+//@ComponentScan({"br.com.fiap.EcoSynergyPacksdb", "br.com.fiap.EcoSynergy.Service"})
 @EnableTransactionManagement
 public class DomainConfig {
 }

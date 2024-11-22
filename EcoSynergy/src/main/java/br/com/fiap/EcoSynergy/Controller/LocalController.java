@@ -3,8 +3,6 @@ package br.com.fiap.EcoSynergy.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.fiap.EcoSynergy.Dto.LocalDTO;
+import br.com.fiap.EcoSynergy.Dto.UsuarioDTO;
+import br.com.fiap.EcoSynergy.Model.Usuario;
 import br.com.fiap.EcoSynergy.Service.LocalService;
 import br.com.fiap.EcoSynergy.Service.UsuarioService;
 
@@ -29,22 +29,29 @@ public class LocalController {
 
     @GetMapping
     public String listarLocal(Model model) {
-        List<LocalDTO> locais = service.getAll();
+    	List<LocalDTO> locais = service.getAllFromUser(usuarioService.getUsuarioLogado());
+       // List<LocalDTO> locais = service.getAll();
         model.addAttribute("locais", locais);
         return "local";
     }
 
     @PostMapping("/adicionar")
-    public String adicionarLocal(@RequestParam String nome, @AuthenticationPrincipal User loggedUser, Model model) {
+    public String adicionarLocal(@RequestParam String nome, Model model) {
         
-    	//UsuarioDTO usuario = usuarioService.getById(idUsuario);
+    	Usuario usuario = usuarioService.getUsuarioLogado();
+    	UsuarioDTO usuarioDTO = new UsuarioDTO();
     	
-    	System.out.println(loggedUser.toString());
+    	if(usuario != null) {
+    		usuarioDTO.setId(usuario.getId());
+    		LocalDTO local = new LocalDTO();
+            local.setNome(nome);
+            local.setUsuario(usuarioDTO);
+            service.criarLocal(local);
+    	}
     	
-    	LocalDTO local = new LocalDTO();
-        local.setNome(nome);
-        //local.setUsuario(usuario);
-        service.criarLocal(local);
+    	//System.out.println(loggedUser.toString());
+    	
+    	
         return "redirect:/local";
     }
 
