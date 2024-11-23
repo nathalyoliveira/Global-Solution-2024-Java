@@ -1,6 +1,6 @@
-# Nome da Aplicação: EcoSynergy
+# EcoSynergy
 
-## Projeto EcoSynergy: Sistema de Monitoramento de Eficiência Energética e Painéis Solares  
+## Sistema de Monitoramento de Eficiência Energética e Painéis Solares  
 
 O EcoSynergy é um sistema avançado de monitoramento de eficiência energética voltado para ambientes residenciais, comerciais e para o acompanhamento de painéis solares. Ele integra sensores IoT para coleta de dados em tempo real, utiliza inteligência artificial (IA) para análise e personalização de relatórios e fornece uma interface web e mobile para visualização dinâmica e personalizada de dados de consumo e eficiência energética.  
 
