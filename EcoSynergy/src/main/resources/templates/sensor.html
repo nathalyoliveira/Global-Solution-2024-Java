@@ -36,51 +36,56 @@
             <p th:if="${MSG_INFO}" class="alert alert-info mb-4" role="alert">[[${MSG_INFO}]]</p>
             <p th:if="${MSG_ERROR}" class="alert alert-danger mb-4" role="alert">[[${MSG_ERROR}]]</p>
 
-            <!-- Formulário para adicionar um novo local -->
+            <!-- Formulário para adicionar um novo sensor -->
             <div class="mb-4">
-                <h2>[[#{local.novo.local}]]</h2>
-                <form th:action="@{/local/adicionar}" method="post">
+                <h2>[[#{sensor.novo.sensor}]]</h2>
+                <form th:action="@{/sensor/adicionar}" method="post">
                     <div class="mb-3">
-                        <label for="nome" class="form-label">[[#{local.novo.nome}]]</label>
-                        <input type="text" id="nome" name="nome" class="form-control" required />
+						
+						<input type="text" id="idLocal" name="idLocal" class="form-control" required th:value="${idLocal}" hidden />
+						
+                        <label for="status" class="form-label">[[#{sensor.novo.status}]]</label>
+                        <input type="text" id="status" name="status" class="form-control" required />
+						
+						<label for="consumoPadrao" class="form-label">[[#{sensor.novo.consumoPadrao}]]</label>
+						<input type="text" id="consumoPadrao" name="consumoPadrao" class="form-control" required />
                     </div>
                     <button type="submit" class="btn btn-primary">[[#{projeto.botao.adicionar}]]</button>
+					
+					<a 
+						th:href="@{/local}"
+						class="btn btn-secondary ">[[#{projeto.botao.voltar}]]
+					</a>
                 </form>
             </div>
 
             <!-- Tabela de locais -->
             <div>
-                <h2>[[#{local.tabela.lista}]]</h2>
+                <h2>[[#{sensor.tabela.lista}]]</h2>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>[[#{local.tabela.id}]]</th>
-                            <th>[[#{local.tabela.nome}]]</th>
+                            <th>[[#{sensor.tabela.id}]]</th>
+                            <th>[[#{sensor.tabela.status}]]</th>
+							<th>[[#{sensor.tabela.consumoPadrao}]]</th>
                             <th class="acoes"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Aqui você pode iterar sobre a lista de locais -->
-                        <tr th:each="local : ${locais}">
-                            <td th:text="${local.id}">ID</td>
-                            <td th:text="${local.nome}">Nome</td>
+                        <tr th:each="sensor : ${sensores}">
+                            <td th:text="${sensor.id}">ID</td>
+                            <td th:text="${sensor.status}">Status</td>
+							<td th:text="${sensor.consumoPadrao}">Consumo Padrão</td>
 
                             <td class="acoes">
 								
                                 <a href="#" class="btn btn-primary btn-sm"
                                    data-bs-toggle="modal" data-bs-target="#myModal"
-                                   th:attr="data-id=${local.id}">[[#{projeto.botao.editar}]]
+                                   
+								   th:attr="data-id=${sensor.id},data-local-id=${idLocal}"
+								   >[[#{projeto.botao.editar}]]
                                 </a>
-                                
-                                <a href="#" class="btn btn-danger btn-sm"
-                                   data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
-                                   th:data-id="${local.id}">[[#{projeto.botao.excluir}]]
-                                </a>
-								
-								<a 
-									th:href="@{/sensor/{id}(id=${local.id})}"
-									class="btn btn-secondary btn-sm ">[[#{projeto.botao.visualizar}]]
-								</a>
 																
                             </td>
                         </tr>
@@ -93,21 +98,26 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">[[#{local.modal.editar}]]</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">[[#{sensor.modal.editar}]]</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="editLocalForm" th:action="@{/local/editar}" method="post">
-                                <input type="hidden" id="localId" name="id">
+                            <form id="editSensorForm" th:action="@{/sensor/editar}" method="post">
+                                <input type="hidden" id="sensorId" name="id">
+								<input type="hidden" id="sensorLocal" name="idLocal">
                                 <div class="mb-3">
-                                    <label for="localNome" class="form-label">[[#{local.modal.editar.nome}]]</label>
-                                    <input type="text" id="localNome" name="nome" placeholder="Digite o nome do local" class="form-control" required>
-                                </div>
+                                    <label for="sensorStatus" class="form-label">[[#{sensor.modal.editar.status}]]</label>
+                                    <input type="text" id="sensorStatus" name="status" placeholder="Digite o Status" class="form-control" required>
+                                
+									<label for="sensorConsumoPadrao" class="form-label">[[#{sensor.modal.editar.consumoPadrao}]]</label>
+									<input type="text" id="consumoPadrao" name="consumoPadrao" placeholder="Digite o Consumo Padrão" class="form-control" required>
+									
+								</div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">[[#{projeto.botao.cancelar}]]</button>
-                            <button type="submit" class="btn btn-primary" form="editLocalForm">[[#{projeto.botao.salvar}]]</button>
+                            <button type="submit" class="btn btn-primary" form="editSensorForm">[[#{projeto.botao.salvar}]]</button>
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.EcoSynergy.Dto.ConsumoDTO;
@@ -22,6 +25,11 @@ public class ConsumoService {
 	public List<ConsumoDTO> getAll() {
 		return factory.toDTO((List<Consumo>) consumoRepository.findAll());
 	}
+	
+    public Page<ConsumoDTO> getAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return consumoRepository.findAll(pageable).map(factory::toDto); // Converte entidades para DTOs
+    }
 
 	public ConsumoDTO getById(Long id) {
 		Optional<Consumo> consumoOptional = consumoRepository.findById(id);

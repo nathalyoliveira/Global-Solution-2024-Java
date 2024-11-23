@@ -6,19 +6,26 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function() {
             
             var objetoId = this.getAttribute('data-id');
+			
+			var objetoLocalId = this.getAttribute('data-local-id');
 
             var modal = document.getElementById('myModal');
             
             
             var localIdInput = modal.querySelector('#localId');
-            var vendedorIdInput = modal.querySelector('#vendedorId');
+            var sensorIdInput = modal.querySelector('#sensorId');
+			var sensorLocalInput = modal.querySelector('#sensorLocal');
             
             if(localIdInput != null){
 				localIdInput.value = objetoId;
 			}
 			
-			if(vendedorIdInput != null){
-				vendedorIdInput.value = objetoId;
+			if(sensorIdInput != null){
+				sensorIdInput.value = objetoId;
+			}
+			
+			if(sensorLocalInput != null){
+				sensorLocalInput.value = objetoLocalId;
 			}
         });
     });
@@ -29,10 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
     deleteButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             var objetoId = this.getAttribute('data-id');
+			var objetoLocalId = this.getAttribute('data-local-id');
             var deleteForm = document.getElementById('deleteForm');
             
             var localIdInput = document.getElementById('localIdToDelete');
-            var vendedorIdInput = document.getElementById('vendedorIdToDelete');
+            var sensorIdInput = document.getElementById('sensorIdToDelete');
             
             var tipoCultivoIdInput = document.getElementById('cultivoIdToDelete');
             
@@ -41,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				deleteForm.action = '/local/excluir/' + objetoId;
 			}
 			
-			if(vendedorIdInput != null){
-				vendedorIdInput.value = objetoId;
-				deleteForm.action = '/vendedores/excluir/' + objetoId;
+			if(sensorIdInput != null){
+				sensorIdInput.value = objetoId;
+				deleteForm.action = '/sensor/excluir/' + objetoId;
 			}
 			
 			if(tipoCultivoIdInput != null){

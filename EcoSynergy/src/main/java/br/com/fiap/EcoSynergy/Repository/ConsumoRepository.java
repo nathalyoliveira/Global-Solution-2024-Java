@@ -1,9 +1,10 @@
 package br.com.fiap.EcoSynergy.Repository;
 
-import br.com.fiap.EcoSynergy.Model.Consumo;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import br.com.fiap.EcoSynergy.Model.Consumo;
+
 @Repository
-public interface ConsumoRepository extends CrudRepository<Consumo, Long> {
+public interface ConsumoRepository extends JpaRepository<Consumo, Long> {
 }

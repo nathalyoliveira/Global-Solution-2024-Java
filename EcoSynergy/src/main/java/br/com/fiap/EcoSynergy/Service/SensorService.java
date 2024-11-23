@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.fiap.EcoSynergy.Dto.SensorDTO;
 import br.com.fiap.EcoSynergy.Factory.SensorFactory;
+import br.com.fiap.EcoSynergy.Model.Local;
 import br.com.fiap.EcoSynergy.Model.Sensor;
 import br.com.fiap.EcoSynergy.Repository.SensorRepository;
 
@@ -23,6 +24,13 @@ public class SensorService {
     public List<SensorDTO> getAll() {
         return factory.toDto((List<Sensor>) sensorRepository.findAll());
     }
+    
+	public List<SensorDTO> getAll(Long idLocal) {
+		Local local = new Local();
+		local.setId(idLocal);
+		return factory.toDto((List<Sensor>) sensorRepository.findByLocal(local));
+		//return factory.toDto((List<Sensor>) sensorRepository.findAll());
+	}
 
     public SensorDTO getById(Long id) {
         Optional<Sensor> sensorOptional = sensorRepository.findById(id);

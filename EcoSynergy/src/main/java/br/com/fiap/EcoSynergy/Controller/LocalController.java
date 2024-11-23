@@ -30,7 +30,6 @@ public class LocalController {
     @GetMapping
     public String listarLocal(Model model) {
     	List<LocalDTO> locais = service.getAllFromUser(usuarioService.getUsuarioLogado());
-       // List<LocalDTO> locais = service.getAll();
         model.addAttribute("locais", locais);
         return "local";
     }
@@ -49,19 +48,24 @@ public class LocalController {
             service.criarLocal(local);
     	}
     	
-    	//System.out.println(loggedUser.toString());
-    	
-    	
         return "redirect:/local";
     }
 
     @PostMapping("/editar")
     public String editarLocal(@RequestParam Long id,@RequestParam String nome, Model model) {
+    	
+    	Usuario usuario = usuarioService.getUsuarioLogado();
+    	UsuarioDTO usuarioDTO = new UsuarioDTO();
+    	
+    	if(usuario != null) {
+    		usuarioDTO.setId(usuario.getId());
+    		LocalDTO local = new LocalDTO();
+    		local.setId(id);
+            local.setNome(nome);
+            local.setUsuario(usuarioDTO);
+            service.updateLocal(id, local);
+    	}
 
-        LocalDTO local = new LocalDTO();
-        local.setId(id);
-        local.setNome(nome);
-        service.updateLocal(id, local);
         return "redirect:/local";
     }
 
