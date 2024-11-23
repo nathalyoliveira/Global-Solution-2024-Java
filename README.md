@@ -24,8 +24,8 @@ Ao clonar a aplicação e importá-la na IDE de preferência, rodar a classe `Ec
 
 ## Links
 - **Link do pitch no YouTube**: [Clique aqui](https://www.youtube.com/watch?v=pR0H1GuXL6Q)
-- **Link da aplicação**: [Clique aqui](https://movtoagroplus-rm552189.azurewebsites.net/)
-- **Link da apresentação técnica**: [Clique aqui](https://drive.google.com/file/d/1tIzVavyJDZvb4PIGuE8H-z6XuM4S2qa1/view?usp=sharing)
+- **Link da aplicação**: [Clique aqui](https://ecosynergy-api-java.azurewebsites.net/)
+- **Link da apresentação técnica**: [Clique aqui](https://drive.google.com/drive/folders/1f4fTp-Z52IA2ydPo4zRkq_IQHXP8Aerw?usp=sharing)
 
 ## Diagramas
 
